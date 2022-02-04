@@ -1,13 +1,13 @@
-# @ivorgri/sveltekit-adapter-static-image-download
+# @ivorgri/sveltekit-adapter-static-local-image
 Adaption of the standard static adapter from the Sveltekit team, including download of image within generated pages (for example, when using a separate CMS). For the basic usage of the Adapter, [please view the static adapter documentation on the SvelteKit website](https://kit.svelte.dev/docs#adapters).
 
 ## Usage
 
-Install with `npm i -D @ivorgri/sveltekit-adapter-static-image-download`, then add the adapter to your `svelte.config.js`:
+Install with `npm i -D @ivorgri/sveltekit-adapter-static-local-image`, then add the adapter to your `svelte.config.js`:
 
 ```js
 // svelte.config.js
-import adapter from '@ivorgri/sveltekit-adapter-static-image-download';
+import adapter from '@ivorgri/sveltekit-adapter-static-local-image';
 
 export default {
 	kit: {
@@ -54,7 +54,7 @@ img
 
 ## Changelog
 
-[The Changelog for this package is available on GitHub](https://github.com/ivorgri/sveltekit-adapter-static-image-download/CHANGELOG.md).
+[The Changelog for this package is available on GitHub](https://github.com/ivorgri/sveltekit-adapter-static-local-image/CHANGELOG.md).
 
 ## License
 
