@@ -33,5 +33,8 @@
     "format": "npm run check-format -- --write",
     "check-format": "prettier --check . --config ../../.prettierrc --ignore-path .gitignore",
     "test": "echo 'No test provided'"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
