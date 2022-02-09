@@ -17,12 +17,12 @@
   },
   "types": "index.d.ts",
   "dependencies": {
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^7.0.0",
     "tiny-glob": "^0.2.9"
   },
   "devDependencies": {
     "@sveltejs/kit": "1.0.0-next.221",
-    "imagemin": "^8.0.1",
-    "imagemin-webp": "^7.0.0",
     "playwright-chromium": "^1.17.0",
     "port-authority": "^1.1.2",
     "sirv": "^2.0.0",
