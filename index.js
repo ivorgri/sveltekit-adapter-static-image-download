@@ -6,11 +6,13 @@ import zlib from 'zlib';
 import { promises as fs } from 'fs';
 import * as https from 'https';
 import url from 'url';
+import imagemin from 'imagemin';
+import imageminWebp from 'imagemin-webp';
 
 const pipe = promisify(pipeline);
 
 /** @type {import('.')} */
-export default function ({ pages = 'build', assets = pages, fallback, precompress = false, cmsUrls = [] } = {}) {
+export default function ({ pages = 'build', assets = pages, fallback, precompress = false, cmsUrls = [], convertWebpImages = false } = {}) {
 	return {
 		name: '@sveltejs/adapter-static',
 
@@ -30,6 +32,13 @@ export default function ({ pages = 'build', assets = pages, fallback, precompres
 			if (cmsUrls) {
 				builder.log(`Checking generated files on image URL's`)
 				await download(builder, pages, assets, cmsUrls);
+				builder.log(`Download of images complete.`)
+			}
+
+			if (convertWebpImages) {
+				builder.log(`Converting images to .webp`);
+				await convert_webp(assets)
+				builder.log(`Image conversion to .webp complete`);
 			}
 
 			if (precompress) {
@@ -217,7 +226,7 @@ async function replace_cms_links(builder,filePath, fileContent, cmsUrls) {
 /**
  * @param {string} directory
  */
-async function compress(directory) {
+ async function compress(directory) {
 	const files = await glob('**/*.{html,js,json,css,svg,xml}', {
 		cwd: directory,
 		dot: true,
@@ -228,6 +237,37 @@ async function compress(directory) {
 	await Promise.all(
 		files.map((file) => Promise.all([compress_file(file, 'gz'), compress_file(file, 'br')]))
 	);
+}
+
+/**
+ * @param {string} assetsDirectory
+ */
+async function convert_webp(assetsDirectory) {
+	const files = await glob('**/*.{jpg,jpeg,png}', {
+		cwd: assetsDirectory,
+		dot: true,
+		absolute: true,
+		filesOnly: true
+	});
+
+	await Promise.all(
+		files.map((file) => Promise.all([convert_webp_file(file)]))
+	);
+}
+
+/**
+ * @param {string} file
+ */
+ async function convert_webp_file(file) {
+	const buildImagePathArray = file.split("/");
+	const fileName = buildImagePathArray[buildImagePathArray.length - 1];
+	const newAssetPath = file.replace(fileName, "");
+	const webpFiles = await imagemin([file], {
+		destination: newAssetPath,
+		plugins: [
+			imageminWebp({})
+		]
+	})
 }
 
 /**

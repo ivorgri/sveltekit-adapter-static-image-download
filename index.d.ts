@@ -5,7 +5,8 @@ interface AdapterOptions {
 	assets?: string;
 	fallback?: string;
 	precompress?: boolean;
-	cmsUrls?: string[]
+	cmsUrls?: string[];
+	convertWebpImages?: boolean;
 }
 
 declare function plugin(options?: AdapterOptions): Adapter;
