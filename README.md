@@ -1,4 +1,7 @@
 # @ivorgri/sveltekit-adapter-static-local-image
+
+# <span style="color:red">IMPORTANT: This repo has been replaced with <a href="https://www.npmjs.com/package/@ivorgri/sveltekit-pluggable-static-adapter">a pluggable alternative</a>. If you are using this repo, please change your code to use the new repo, as this repo will not be updated anymore.</span>
+
 Adaption of the standard static adapter from the Sveltekit team, including download of image within generated pages (for example, when using a separate CMS). For the basic usage of the Adapter, [please view the static adapter documentation on the SvelteKit website](https://kit.svelte.dev/docs#adapters).
 
 ## Usage

@@ -1,6 +1,6 @@
 {
   "name": "@ivorgri/sveltekit-adapter-static-local-image",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/ivorgri/sveltekit-adapter-static-local-image"
